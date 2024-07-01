@@ -1,0 +1,17 @@
+
+- Disable log jpa:
+spring.jpa.show-sql=false
+
+- Disable Spring Open Session In View:
+spring.jpa.open-in-view=false
+
+- Allow batching queries:
+spring.jpa.properties.hibernate.jdbc.batch_size=15
+spring.jpa.properties.hibernate.order_inserts=true
+spring.jpa.properties.hibernate.order_updates=true
+
+- Enable fail on pagination when collection fetching:
+spring.jpa.properties.hibernate.query.fail_on_pagination_over_collection_fetch=true
+
+- Monitoring slow SQL queries executed by JPA and Hibernate:
+spring.jpa.properties.hibernate.session.events.log.LOG_QUERIES_SLOWER_THAN_MS=25
