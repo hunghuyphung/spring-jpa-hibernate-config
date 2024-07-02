@@ -5,7 +5,7 @@ spring.jpa.show-sql=false
 - Disable Spring Open Session In View:
 spring.jpa.open-in-view=false
 
-- Allow batching queries:
+- Allow batching queries and reorder statements so that statements of the same type are being batches:
 spring.jpa.properties.hibernate.jdbc.batch_size=15
 spring.jpa.properties.hibernate.order_inserts=true
 spring.jpa.properties.hibernate.order_updates=true
@@ -13,5 +13,14 @@ spring.jpa.properties.hibernate.order_updates=true
 - Enable fail on pagination when collection fetching:
 spring.jpa.properties.hibernate.query.fail_on_pagination_over_collection_fetch=true
 
-- Monitoring slow SQL queries executed by JPA and Hibernate:
+- (Optional)Monitoring slow SQL queries executed by JPA and Hibernate:
 spring.jpa.properties.hibernate.session.events.log.LOG_QUERIES_SLOWER_THAN_MS=25
+
+- Statement caching at data access framework layer(Hibernate):
+spring.jpa.properties.hibernate.query.in_clause_parameter_padding=true
+
+- (Optional)Configuring the literal handling mode:
+spring.jpa.properties.hibernate.criteria.literal_handling_mode=[auto|bind|inline](default value is auto)
+
+- Enabling rewriteBatchedInserts for Spring JPA with PostgreSQL:
+spring.datasource.url=jdbc:postgresql://localhost:5432/your_database?reWriteBatchedInserts=true
