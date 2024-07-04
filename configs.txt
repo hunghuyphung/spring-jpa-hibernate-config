@@ -24,3 +24,7 @@ spring.jpa.properties.hibernate.criteria.literal_handling_mode=[auto|bind|inline
 
 - Enabling rewriteBatchedInserts for Spring JPA with PostgreSQL:
 spring.datasource.url=jdbc:postgresql://localhost:5432/your_database?reWriteBatchedInserts=true
+
+- Delay database connection acquisition in the case of resource-local (a single data source):
+spring.datasource.hikari.auto-commit=false
+spring.jpa.properties.hibernate.connection.provider_disables_autocommit=true
