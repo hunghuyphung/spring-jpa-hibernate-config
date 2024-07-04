@@ -28,3 +28,6 @@ spring.datasource.url=jdbc:postgresql://localhost:5432/your_database?reWriteBatc
 - Delay database connection acquisition in the case of resource-local (a single data source):
 spring.datasource.hikari.auto-commit=false
 spring.jpa.properties.hibernate.connection.provider_disables_autocommit=true
+
+- Caching query plan(execution plan):
+spring.jpa.properties.hibernate.query.plan_cache_max_size=4096
