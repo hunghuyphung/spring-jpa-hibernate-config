@@ -31,3 +31,5 @@ spring.jpa.properties.hibernate.connection.provider_disables_autocommit=true
 
 - Caching query plan(execution plan):
 spring.jpa.properties.hibernate.query.plan_cache_max_size=4096
+
+- The fastest way to update a table row when using Hibernate and Oracle use @RowId
