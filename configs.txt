@@ -34,3 +34,36 @@ spring.jpa.properties.hibernate.connection.provider_disables_autocommit=true
 spring.jpa.properties.hibernate.query.plan_cache_max_size=4096
 
 - The fastest way to update a table row when using Hibernate and Oracle use @RowId
+
+- Fetching strategy should be set for relationships definition:
++ @ManyToOne(fetch = FetchType.LAZY). By default, @ManyToOne associations use the FetchType.EAGER strategy
+
++ @OneToOne:
+    In a one-to-one (1-1) relationship in a database, the parent and child tables typically share the same key.
+    So, use @MapsId(the @Id column no longer uses a @GeneratedValue annotation) to mapping id of parent table
+    for the child id, and use @JoinColumn to define FK column name
+
+    if definition of child is needed for business. When use [optional = false(parent-side) + @MapsId(child-side)]
+
+    Ex:
+    // child-side
+    @Entity(name = "PostDetails")
+    @Table(name = "post_details")
+    public class PostDetails {
+        @Id
+        private Long id;
+
+        @OneToOne(fetch = FetchType.LAZY)
+        @MapsId
+        @JoinColumn(name = "id")
+        private Post post;
+    }
+
+    // parent-side
+    @OneToOne(
+        mappedBy = "post",
+        cascade = CascadeType.ALL,
+        fetch = FetchType.LAZY,
+        optional = false
+    )
+    private PostDetails details;
